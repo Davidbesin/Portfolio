@@ -1,0 +1,406 @@
+/* ---------------------------------------------------------
+   Tokens
+--------------------------------------------------------- */
+:root{
+  --bg: #FAFAF8;
+  --panel: #FFFFFF;
+  --ink: #16181A;
+  --muted: #6B7280;
+  --line: #E4E2DC;
+  --accent: #3B5BDB;
+  --accent-soft: #EEF1FD;
+  --paused: #B5751F;
+  --paused-soft: #FBF1E4;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --wrap: 880px;
+}
+
+*{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *{ animation: none !important; transition: none !important; }
+}
+
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap{
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.mono{ font-family: var(--font-mono); }
+
+a{ color: inherit; }
+
+/* ---------------------------------------------------------
+   Faint grid overlay — nods to a scene/editor viewport
+--------------------------------------------------------- */
+.grid-overlay{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(to right, rgba(22,24,26,0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(22,24,26,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ---------------------------------------------------------
+   Header
+--------------------------------------------------------- */
+.site-header{
+  position: relative;
+  z-index: 2;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.header-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tag{
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.header-nav{ display: flex; gap: 24px; }
+
+.header-nav a{
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--ink);
+  position: relative;
+}
+
+.header-nav a::after{
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -4px;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+.header-nav a:hover::after,
+.header-nav a:focus-visible::after{
+  transform: scaleX(1);
+}
+
+/* ---------------------------------------------------------
+   Hero
+--------------------------------------------------------- */
+.hero{
+  position: relative;
+  z-index: 1;
+  padding: 96px 24px 72px;
+}
+
+.eyebrow{
+  color: var(--accent);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  margin: 0 0 20px;
+}
+
+.hero h1{
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1.05;
+  margin: 0 0 24px;
+  letter-spacing: -0.02em;
+}
+
+.hero-lede{
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+  font-weight: 500;
+  max-width: 42ch;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+
+.hero-sub{
+  max-width: 46ch;
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0;
+}
+
+/* ---------------------------------------------------------
+   Sections
+--------------------------------------------------------- */
+.section{
+  position: relative;
+  z-index: 1;
+  padding: 64px 0;
+  border-top: 1px solid var(--line);
+}
+
+.section-head{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.section-head h2, .contact h2{
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 0;
+}
+
+.section-count{
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ---------------------------------------------------------
+   Project cards — styled like an editor inspector panel
+--------------------------------------------------------- */
+.project-list{
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.project-card{
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.project-media{
+  background: var(--ink);
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.project-media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-body{
+  padding: 28px 32px;
+}
+
+.project-heading{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.project-heading h3{
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.status-pill{
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: 100px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.status-pill--paused{
+  background: var(--paused-soft);
+  color: var(--paused);
+}
+
+.project-desc{
+  color: var(--ink);
+  font-size: 15px;
+  margin: 0 0 20px;
+  max-width: 60ch;
+}
+
+.inspector{
+  margin: 0 0 22px;
+  border-top: 1px solid var(--line);
+}
+
+.inspector-row{
+  display: flex;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.inspector-row dt{
+  width: 110px;
+  flex-shrink: 0;
+  color: var(--muted);
+}
+
+.inspector-row dd{
+  margin: 0;
+  color: var(--ink);
+}
+
+.project-links{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.project-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-decoration: none;
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, gap 0.2s ease;
+}
+
+.project-link:hover, .project-link:focus-visible{
+  border-color: var(--accent);
+  gap: 9px;
+}
+
+/* ---------------------------------------------------------
+   Contact
+--------------------------------------------------------- */
+.contact-lede{
+  color: var(--muted);
+  margin: 12px 0 28px;
+  max-width: 46ch;
+}
+
+.contact-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-list li{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 15px;
+}
+
+.contact-list a{
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.contact-list a:hover, .contact-list a:focus-visible{
+  color: var(--accent);
+}
+
+.placeholder-tag{
+  font-size: 11px;
+  color: var(--paused);
+  background: var(--paused-soft);
+  padding: 2px 8px;
+  border-radius: 100px;
+}
+
+/* ---------------------------------------------------------
+   Footer
+--------------------------------------------------------- */
+.site-footer{
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--line);
+  padding: 24px 0 40px;
+}
+
+.footer-row{
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ---------------------------------------------------------
+   Motion — quiet on-scroll reveal
+--------------------------------------------------------- */
+.reveal{
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------------------------------------------------------
+   Focus visibility
+--------------------------------------------------------- */
+a:focus-visible, button:focus-visible{
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------
+   Responsive
+--------------------------------------------------------- */
+@media (max-width: 720px){
+  .project-card{
+    grid-template-columns: 1fr;
+  }
+  .project-media{
+    min-height: 180px;
+  }
+  .header-nav{
+    gap: 16px;
+  }
+  .hero{
+    padding: 64px 24px 56px;
+  }
+}
