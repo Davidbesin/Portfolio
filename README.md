@@ -1,29 +1,13 @@
 # David Besin — Portfolio
 
-A minimal, static portfolio site. No build step, no dependencies — just `index.html`, `style.css`, and `script.js`.
+Static portfolio site for David Besin, solo Unity/C# developer. No build step, no dependencies — just `index.html`, `style.css`, and `script.js`.
 
-## Host it on GitHub Pages (free)
+Live structure: a hero intro, a `#work` section listing five projects as "inspector panel"-styled cards (status pill, description, spec table, links), and a `#contact` section.
 
-1. **Create a repository.** On GitHub, click **New repository**. Name it whatever you like — if you name it exactly `yourusername.github.io`, your site will live at the root of your GitHub domain instead of a subpath.
+## Projects on the site
 
-2. **Upload the files.** Either drag `index.html`, `style.css`, and `script.js` into the repo via the GitHub web UI, or push from your machine:
-   ```bash
-   git init
-   git add index.html style.css script.js
-   git commit -m "Add portfolio site"
-   git branch -M main
-   git remote add origin https://github.com/yourusername/your-repo.git
-   git push -u origin main
-   ```
-
-3. **Turn on Pages.** In the repo, go to **Settings → Pages**. Under **Build and deployment → Source**, choose **Deploy from a branch**. Under **Branch**, pick `main` and `/ (root)`, then **Save**.
-
-4. **Wait a minute, then visit your site.** GitHub will show the live URL at the top of the Pages settings once it's built — usually:
-   - `https://yourusername.github.io/your-repo/` (normal repo name), or
-   - `https://yourusername.github.io/` (if you named the repo `yourusername.github.io`)
-
-Any time you push a change to `main`, the live site updates automatically within a minute or two.
-
-## Adding more projects later
-
-Copy one `<article class="project-card">...</article>` block in `index.html`, swap the image, title, description, and the `<dl class="inspector">` rows (Status, Platform, Made with, Genre, Role) to match your new project, and update the link.
+- **Spark** — In progress. Third-person melee action-combat prototype. Locomotion, lock-on camera, priority-based FSM, weapon-layered animation working; no enemy AI or combat resolution yet, no playable build.
+- **FSM Demo** — Prototype. Standalone finite state machine demo, same movement-FSM pattern as Spark, isolated in its own test scene. Includes a grindrail state and a double jump (built as an expansion of the jump state). Playable on itch.io, source on GitHub.
+- **BrickBreaker** — Prototype. Classic brick-breaker. Brick textures and paddle generated with ChatGPT; gameplay, physics, and structure built from scratch. HTML5/Windows/Android. Playable on itch.io, source on GitHub.
+- **Claynections** — Prototype. 3D tower defense made for the GameDev.tv Game Jam 2026. Draw paths from portals through towers to drain bosses before they reach the castle. Playable on itch.io.
+- **Project1** — On pause since June 2026. Resource-gathering / base-defense hybrid. 11 systems implemented (AI, towers, mining, inventory, save-load, spawning, token economy, upgrades, grid-based walls) but no game loop connecting them. On itch.io and GitHub.
